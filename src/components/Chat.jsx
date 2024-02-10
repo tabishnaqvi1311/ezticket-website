@@ -76,7 +76,7 @@ const Chat = () => {
 
     return (
         <AnimatePresence>
-            <div className='bg-purple-500 hover:bg-purple-600 bottom-7 p-5 inline-block rounded-full cursor-pointer fixed right-7' onClick={() => setToggle(prev => !prev)}>
+            <div className='bg-indigo-500 hover:bg-indigo-600 bottom-7 p-5 inline-block rounded-full cursor-pointer fixed right-7' onClick={() => setToggle(prev => !prev)}>
                 <IoChatbox size={27} color='white' />
             </div>
             
@@ -88,6 +88,7 @@ const Chat = () => {
                 exit="hidden"
                 variants={modalVariants}>
                 {/* Chatbot content */}
+                <h1 className='font-semibold text-lg text-slate-200 text-center pb-2'>Support</h1>
                 <div className=" h-60 overflow-y-auto flex flex-col gap-2">
                     {
                         messages.map((m, i) => (

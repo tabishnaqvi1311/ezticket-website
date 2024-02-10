@@ -11,6 +11,7 @@ import Explain from './components/Explain'
 import EventTypes from './components/EventTypes'
 import Footer from './components/Footer'
 import Chat from './components/Chat'
+import HowItWorks from './components/HowItWorks'
 
 function App() {
   const [provider, setProvider] = useState(null)
@@ -72,14 +73,15 @@ function App() {
       {/* <Sort /> */}
       <Hero />
       <EventTypes />
-      <Explain />
+      <HowItWorks/>
+      
 
       <div id='events' className='flex flex-col justify-center items-center'>
         <h1 className='md:pt-20 md:px-20 p-10 font-bold text-6xl text-slate-200'>Discover Events</h1>
         {
           error === "INVALID_ARGUMENT" ?
             <div className='text-slate-200 bg-red-900 rounded p-5'>
-              Seems you are not connected to your wallet. Please connect your Metamask Wallet to attend and see events
+              Seems you are not connected to your wallet. Please connect your Metamask Wallet to attend events
             </div>
             :
             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:p-20 p-10'>
@@ -107,6 +109,8 @@ function App() {
           setToggle={setToggle}
         />
       )}
+
+      <Explain />
 
       <Chat />
       <Footer />
