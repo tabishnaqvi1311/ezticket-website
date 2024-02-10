@@ -10,6 +10,7 @@ import Hero from './components/Hero'
 import Explain from './components/Explain'
 import EventTypes from './components/EventTypes'
 import Footer from './components/Footer'
+import Chat from './components/Chat'
 
 function App() {
   const [provider, setProvider] = useState(null)
@@ -92,6 +93,7 @@ function App() {
           setToggle={setToggle}
         />
       )}
+      <Chat/>
       <Footer/>
     </div>
   );

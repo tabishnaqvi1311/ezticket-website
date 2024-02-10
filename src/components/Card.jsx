@@ -10,7 +10,7 @@ const Card = ({ occasion, toggle, setToggle, setOccasion }) => {
     <div className='text-slate-200 card'>
       <div className='card2 p-5 flex flex-col items-center justify-center '>
         <h3 className='font-semibold text-xl text-blue-500 text-center mb-2'>{occasion.name}</h3>
-        <p className='text-sm text-center mb-2'>{occasion.location}</p>
+        <p className='text-sm text-center mb-2'>{occasion.location.slice(0, 20)}</p>
         <div className='flex flex-col mb-2'>
           <span>{occasion.date}</span>
           <span>{occasion.time}</span>
