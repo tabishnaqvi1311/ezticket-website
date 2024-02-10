@@ -22,29 +22,36 @@ function App() {
   const [occasion, setOccasion] = useState({})
   const [toggle, setToggle] = useState(false)
 
+  const [error, setError] = useState("");
+
   const loadBlockchainData = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    setProvider(provider)
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      setProvider(provider)
 
-    const network = await provider.getNetwork()
-    const ezTicket = new ethers.Contract(config[network.chainId].EZTicket.address, EZTicket, provider)
-    setezTicket(ezTicket)
+      const network = await provider.getNetwork()
+      const ezTicket = new ethers.Contract(config[network.chainId].EZTicket.address, EZTicket, provider)
+      setezTicket(ezTicket)
 
-    const totalOccasions = await ezTicket.totalOccasions()
-    const occasions = []
+      const totalOccasions = await ezTicket.totalOccasions()
+      const occasions = []
 
-    for (var i = 1; i <= totalOccasions; i++) {
-      const occasion = await ezTicket.getOccasion(i)
-      occasions.push(occasion)
+      for (var i = 1; i <= totalOccasions; i++) {
+        const occasion = await ezTicket.getOccasion(i)
+        occasions.push(occasion)
+      }
+
+      setOccasions(occasions)
+
+      window.ethereum.on('accountsChanged', async () => {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        const account = ethers.utils.getAddress(accounts[0])
+        setAccount(account)
+      })
+    } catch (error) {
+      console.log(error.code);
+      setError(() => error.code);
     }
-
-    setOccasions(occasions)
-
-    window.ethereum.on('accountsChanged', async () => {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-      const account = ethers.utils.getAddress(accounts[0])
-      setAccount(account)
-    })
   }
 
   useEffect(() => {
@@ -54,7 +61,7 @@ function App() {
   return (
     <div className='bg-gray-950 '>
       <div className='main'>
-        <div className='gradient'/>
+        <div className='gradient' />
       </div>
       <header>
         <Navigation account={account} setAccount={setAccount} />
@@ -69,21 +76,28 @@ function App() {
 
       <div id='events' className='flex flex-col justify-center items-center'>
         <h1 className='md:pt-20 md:px-20 p-10 font-bold text-6xl text-slate-200'>Discover Events</h1>
-        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:p-20 p-10'>
-          {occasions.map((occasion, index) => (
-            <Card
-              occasion={occasion}
-              id={index + 1}
-              ezTicket={ezTicket}
-              provider={provider}
-              account={account}
-              toggle={toggle}
-              setToggle={setToggle}
-              setOccasion={setOccasion}
-              key={index}
-            />
-          ))}
-        </div>
+        {
+          error === "INVALID_ARGUMENT" ?
+            <div className='text-slate-200 bg-red-900 rounded p-5'>
+              Seems you are not connected to your wallet. Please connect your Metamask Wallet to attend and see events
+            </div>
+            :
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:p-20 p-10'>
+              {occasions.map((occasion, index) => (
+                <Card
+                  occasion={occasion}
+                  id={index + 1}
+                  ezTicket={ezTicket}
+                  provider={provider}
+                  account={account}
+                  toggle={toggle}
+                  setToggle={setToggle}
+                  setOccasion={setOccasion}
+                  key={index}
+                />
+              ))}
+            </div>
+        }
       </div>
       {toggle && (
         <SeatChart
@@ -93,8 +107,9 @@ function App() {
           setToggle={setToggle}
         />
       )}
-      <Chat/>
-      <Footer/>
+
+      <Chat />
+      <Footer />
     </div>
   );
 }
