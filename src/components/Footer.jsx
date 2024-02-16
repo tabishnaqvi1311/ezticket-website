@@ -1,6 +1,7 @@
 import React from 'react'
 import QRCode from "../assets/qrcodeApp.png";
 import logo from "../assets/logo.png";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -20,7 +21,10 @@ const Footer = () => {
           </div>
         </div>
         <div className='flex md:flex-row flex-col justify-center items-center gap-10'>
-          <h1 className='text-4xl font-semibold text-slate-200 text-center'>Download the <br /> App</h1>
+          <div className='flex flex-col gap-4'>
+            <h1 className='text-4xl font-semibold text-slate-200 text-center'>Download the <br /> App</h1>
+            <a href='https://drive.google.com/drive/folders/1OOO6N2XEtmEf2-9_ToRXTnzyztnDoYFX?usp=sharing' className='bg-slate-200 rounded-xl p-2 hover:bg-slate-300 text-center' target='_blank'>Download</a>
+          </div>
           <img src={QRCode} alt={"download"} width={200} />
         </div>
       </div>
