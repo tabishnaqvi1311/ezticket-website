@@ -17,7 +17,7 @@ const Navigation = ({ account, setAccount }) => {
     <nav className='flex justify-around items-center p-5 border-b border-b-gray-800'>
       <div className='flex items-center gap-5 text-slate-200'>
         <img src={logo}  width={50}/>
-        <h1 className='text-3xl font-bold'>EZ:Ticket</h1>
+        <h1 className='md:text-3xl text-xl font-bold'>EZ:Ticket</h1>
         {/* <input className='nav__search' type="text" placeholder='Find millions of experiences' /> */}
       </div>
       <div className=''>

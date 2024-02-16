@@ -23,10 +23,10 @@ const EventTypes = () => {
     ]
 
     return (
-        <div className='text-slate-200 flex items-center justify-center gap-10 mb-20'>
+        <div className='text-slate-200 flex items-center justify-center md:gap-10 gap-6 mb-20'>
             {
                 eventTypes.map((item, index) => (
-                    <div key={index} className='rounded-full flex flex-col items-center border border-gray-800 p-7 hover:outline-orange-700 hover:outline'>
+                    <div key={index} className='rounded-full flex flex-col items-center border border-gray-800 md:p-7 p-5 hover:outline-orange-700 hover:outline'>
                         <span>{item.icon}</span>
                         <span>{item.title}</span>
                     </div>

@@ -52,7 +52,7 @@ async function main() {
       location: "B Block Seminar Hall, Manav Rachna University"
     },
     {
-      name: "Capture The Flag",
+      name: "Prototype Developement",
       cost: tokens(1.5),
       tickets: 125,
       date: "March 11",

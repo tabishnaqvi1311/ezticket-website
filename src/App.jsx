@@ -12,6 +12,7 @@ import EventTypes from './components/EventTypes'
 import Footer from './components/Footer'
 import Chat from './components/Chat'
 import HowItWorks from './components/HowItWorks'
+import AppPrompt from './components/AppPrompt'
 
 function App() {
   const [provider, setProvider] = useState(null)
@@ -77,7 +78,7 @@ function App() {
       
 
       <div id='events' className='flex flex-col justify-center items-center'>
-        <h1 className='md:pt-20 md:px-20 p-10 font-bold text-6xl text-slate-200'>Discover Events</h1>
+        <h1 className='md:pt-20 md:px-20 p-10 font-bold md:text-6xl text-5xl text-slate-200 text-center'>Discover Events</h1>
         {
           error === "INVALID_ARGUMENT" ?
             <div className='text-slate-200 bg-red-900 rounded p-5'>
