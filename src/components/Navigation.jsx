@@ -1,5 +1,6 @@
 import { ethers } from 'ethers'
 import logo from "../assets/logo.png"
+import { Link } from 'react-router-dom'
 
 const Navigation = ({ account, setAccount }) => {
   const connectHandler = async () => {
@@ -16,11 +17,14 @@ const Navigation = ({ account, setAccount }) => {
   return (
     <nav className='flex justify-around items-center p-5 border-b border-b-gray-800'>
       <div className='flex items-center gap-5 text-slate-200'>
-        <img src={logo}  width={50}/>
+        <img src={logo} width={50} />
         <h1 className='md:text-3xl text-xl font-bold'>EZ:Ticket</h1>
         {/* <input className='nav__search' type="text" placeholder='Find millions of experiences' /> */}
+        <Link to={"/know-more"} className='hover:text-indigo-500 transition-all duration-200'>Know More</Link>
+        {/* <Link to={"/know-more"}>About Us</Link> */}
       </div>
       <div className=''>
+
 
         {account ? (
           <button
